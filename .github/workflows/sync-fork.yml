@@ -1,0 +1,19 @@
+name: Sync fork
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync fork with upstream
+        run: gh repo sync jsjhshs/16 -b main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
